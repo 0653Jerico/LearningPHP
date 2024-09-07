@@ -25,7 +25,7 @@ require_once 'includes/login_view.inc.php';
         </form>
 
         <?php
-            check_login_errors();
+        check_login_errors();
         ?>
 
         <h3>Signup</h3>
@@ -37,7 +37,7 @@ require_once 'includes/login_view.inc.php';
             <button>Signup</button>
         </form>
         <?php
-            check_signup_errors();
+        check_signup_errors();
         ?>
     </section>
 

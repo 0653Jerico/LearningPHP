@@ -6,32 +6,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     try {
         //the order in this connection matter
-         require_once 'dbh.inc.php';
-         require_once 'login_model.inc.php';
-         require_once 'login_contr.inc.php';
+        require_once 'dbh.inc.php';
+        require_once 'login_model.inc.php';
+        require_once 'login_contr.inc.php';
 
         //  Error Handlers
         $errors = [];
 
-        if (is_input_empty($username, $pwd)){
+        if (is_input_empty($username, $pwd)) {
             $errors["empty_input"] = "Fill in all fields!";
         }
 
         $result = get_user($pdo, $username);
 
-        if (is_username_wrong($result)){
+        if (is_username_wrong($result)) {
             $errors["login_incorrect"] = "Incorrect login info!";
         }
 
-        if (!is_username_wrong($result) && is_password_wrong($pwd, $result["$pwd"])){
+        if (!is_username_wrong($result) && is_password_wrong($pwd, $result["$pwd"])) {
             $errors["login_incorrect"] = "Incorrect login info!";
         }
 
         require_once 'config_session.inc.php';
 
-        if ($errors){
-            $_SESSION["login"] = $errors;
-
+        if ($errors) {
+            $_SESSION["errors_login"] = $errors;
+            
             header("Location: ../index.php");
             die();
         }
@@ -51,7 +51,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = null;
 
         die();
-        
     } catch (PDOException $e) {
         die("Query Failed: " . $e->getMessage());
     }
