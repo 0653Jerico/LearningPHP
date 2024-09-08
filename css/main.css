@@ -15,11 +15,17 @@ body{
     align-items: center;
 }
 
+body h3{
+    position: absolute;
+    top: 10;
+    left: 50%;
+}
+
 section{
     width: 20rem;
-    height: 65vh;
+    height: 80vh;
     display: block;
-    background-color: #e9e9e9;
+    background-color: #a8a8a8;
     padding: 1em;
     border: 1px solid #4c4c4c;
     border-radius: 2em;
@@ -70,6 +76,7 @@ form button:hover{
 }
 
 .form-success{
+    font-weight: 600;
     text-align: center;
-    color: #1aff00;
+    color: #2a991d;
 }

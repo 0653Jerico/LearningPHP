@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $errors["login_incorrect"] = "Incorrect login info!";
         }
 
-        if (!is_username_wrong($result) && is_password_wrong($pwd, $result["$pwd"])) {
+        if (!is_username_wrong($result) && is_password_wrong($pwd, $result["pwd"])) {
             $errors["login_incorrect"] = "Incorrect login info!";
         }
 
@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $_SESSION["last_regeneration"] = time();
 
-        header("Location: ../index.php>login=success");
+        header("Location: ../index.php?login=success");
 
         $pdo = null;
         $stmt = null;
