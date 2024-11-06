@@ -10,52 +10,53 @@ require_once 'includes/login_view.inc.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/main.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Login System</title>
 </head>
 
 <body>
-    <h3>
-        <?php
-        output_username();
-        ?>
-    </h3>
+    <div class="container">
+        <header>
+            <h1>Welcome to Our Clinic</h1>
+            <h3>
+                <?php
+                output_username();
+                ?>
+            </h3>
+        </header>
 
-    <section>
-        <?php
-        if (!isset($_SESSION["user_id"])) { ?>
-            <h3>Login</h3>
+        <main>
+            <?php if (!isset($_SESSION["user_id"])) { ?>
+                <section class="form-section">
+                    <h3>Login</h3>
+                    <form action="includes/login.inc.php" method="post" class="form">
+                        <input type="text" name="username" placeholder="Username" required>
+                        <input type="password" name="pwd" placeholder="Password" required>
+                        <button type="submit">Login</button>
+                    </form>
+                    <?php check_login_errors(); ?>
+                </section>
+            <?php } ?>
 
-            <form action="includes/login.inc.php" method="post">
-                <input type="text" name="username" placeholder="Username">
-                <input type="password" name="pwd" placeholder="Password">
-                <button>Login</button>
-            </form>
-        <?php } ?>
+            <section class="form-section">
+                <h3>Signup</h3>
+                <form action="includes/signup.inc.php" method="post" class="form">
+                    <?php signup_inputs(); ?>
+                    <button type="submit">Signup</button>
+                </form>
+                <?php check_signup_errors(); ?>
+            </section>
 
-        <?php
-        check_login_errors();
-        ?>
-
-        <h3>Signup</h3>
-
-        <form action="includes/signup.inc.php" method="post">
-            <?php
-            signup_inputs()
-            ?>
-            <button>Signup</button>
-        </form>
-        <?php
-        check_signup_errors();
-        ?>
-
-        <h3>Logout</h3>
-
-        <form action="includes/logout.inc.php">
-            <button>Logout</button>
-        </form>
-    </section>
-
+            <?php if (isset($_SESSION["user_id"])) { ?>
+                <section class="form-section">
+                    <h3>Logout</h3>
+                    <form action="includes/logout.inc.php" method="post" class="form">
+                        <button type="submit">Logout</button>
+                    </form>
+                </section>
+            <?php } ?>
+        </main>
+    </div>
 </body>
 
 </html>
